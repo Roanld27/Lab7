@@ -53,8 +53,7 @@ public class MorseDecoder {
 
         double[] sampleBuffer = new double[BIN_SIZE * inputFile.getNumChannels()];
         for (int binIndex = 0; binIndex < totalBinCount; binIndex++) {
-            // Get the right number of samples from the inputFile
-            // Sum all the samples together and store them in the returnBuffer
+            returnBuffer[binIndex] = inputFile.readFrames(sampleBuffer, BIN_SIZE);
         }
         return returnBuffer;
     }
@@ -64,6 +63,26 @@ public class MorseDecoder {
 
     /** Bin threshold for dots or dashes. Related to BIN_SIZE. You may need to modify this value. */
     private static final int DASH_BIN_COUNT = 8;
+    /**
+     *
+     */
+    private boolean ispower;
+    /**
+     *
+     */
+    private boolean waspower;
+    /**
+     *
+     */
+    private boolean issilence;
+    /**
+     *
+     */
+    private boolean wassilence;
+    /**
+     *
+     */
+    private int counter = 0;
 
     /**
      * Convert power measurements to dots, dashes, and spaces.
@@ -86,8 +105,38 @@ public class MorseDecoder {
         // else if ispower and not waspower
         // else if issilence and wassilence
         // else if issilence and not wassilence
-
-        return "";
+        public boolean ispower;
+        /**
+         *
+         */
+        private boolean waspower;
+        /**
+         *
+         */
+        private boolean issilence;
+        /**
+         *
+         */
+        private boolean wassilence;
+        /**
+         *
+         */
+        private int counter = 0;
+        if (powerMeasurements[0] > POWER_THRESHOLD) {
+            ispower = true;
+            counter++;
+        } else {
+            ispower = false;
+            issilence = true;
+        } counter++;
+        for (int i = 1; i < powerMeasurements.length; i++) {
+        if (powerMeasurements[i] > POWER_THRESHOLD) {
+            ispower = true;
+        } else {
+            ispower = false;
+        }
+        if (ispower = true && waspower = true;)
+        }
     }
 
     /**
